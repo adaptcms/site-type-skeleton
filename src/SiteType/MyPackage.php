@@ -10,6 +10,11 @@ use Adaptcms\SiteTypes\SiteTypeParent;
 class :uc:package extends SiteTypeParent
 {
   /**
+  * @var bool
+  */
+  public $overwriteLayout = false;
+
+  /**
   * Setup Configuration
   **/
 
