@@ -3,9 +3,9 @@
     <nav class="flex items-center justify-between flex-wrap bg-blue-700 py-2 lg:sticky top-0 z-50">
       <div class="container mx-auto flex flex-wrap">
         <div class="flex items-center flex-shrink-0 text-white ml-4 lg:ml-0 lg:mr-6 h-12">
-          <inertia-link :href="$route('home')">
+          <Link :href="$route('home')">
             <img class="flex items-center h-12" src="/img/AdaptCMSLogoPNG_2.png" alt="AdaptCMS" />
-          </inertia-link>
+          </Link>
         </div>
         <div class="block my-auto ml-auto lg:hidden pr-4">
           <button
@@ -24,12 +24,12 @@
         >
           <ul class="text-base lg:flex-grow">
             <li class="block mt-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white lg:mr-6">
-              <inertia-link
+              <Link
                 :href="$route('home')" class="hover:text-indigo-300"
                 :class="{ 'font-bold text-indigo-300': routeName === 'home' }"
               >
                 Home
-              </inertia-link>
+              </Link>
             </li>
 
             <li
@@ -37,13 +37,13 @@
               :key="`module-${module.slug}`"
               class="block mt-2 lg:mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white lg:mr-6"
             >
-              <inertia-link
+              <Link
                 :href="$route('modules.custom.index', { module: module.route_key })"
                 class="hover:text-indigo-300"
                 :class="{ 'font-bold text-indigo-300': routeUrl === $route('modules.custom.index', { module: module.route_key }) }"
               >
                 {{ module.plural }}
-              </inertia-link>
+              </Link>
             </li>
 
             <li
@@ -51,41 +51,41 @@
               :key="`page-${page.slug}`"
               class="block mt-2 lg:mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white lg:mr-6"
             >
-              <inertia-link
+              <Link
                 :href="$route(`pages.show.${page.slug}`)"
                 class="hover:text-indigo-300"
                 :class="{ 'font-bold text-indigo-300': routeName === `pages.show.${page.slug}` }"
               >
                 {{ page.name }}
-              </inertia-link>
+              </Link>
             </li>
 
             <li
               v-if="user"
               class="block mt-2 lg:mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white lg:mr-6"
             >
-              <inertia-link :href="$route('logout')" class="hover:text-indigo-300">
+              <Link :href="$route('logout')" class="hover:text-indigo-300">
                 Logout
-              </inertia-link>
+              </Link>
             </li>
           </ul>
 
           <div v-if="user">
-            <inertia-link
+            <Link
               :href="$route('auth.dashboard')"
               class="inline-block px-4 py-2 font-bold leading-none border rounded-full text-black bg-white border-white hover:border-transparent hover:text-white hover:bg-indigo-400 mt-4 lg:mt-0"
             >
               Dashboard
-            </inertia-link>
+            </Link>
           </div>
 
           <div v-else>
-            <inertia-link
+            <Link
               :href="$route('login')"
               class="inline-block px-4 py-2 font-bold leading-none border rounded-full text-black bg-white border-white hover:border-transparent hover:text-white hover:bg-indigo-400 mt-4 lg:mt-0"
             >
               Login
-            </inertia-link>
+            </Link>
           </div>
         </div>
       </div>
@@ -117,8 +117,7 @@
 
 <script>
 import { computed } from 'vue'
-import { usePage } from '@inertiajs/inertia-vue3'
-import { get } from 'lodash'
+import { usePage, Link } from '@inertiajs/inertia-vue3'
 import FlashMessage from '@/Adaptcms/Base/ui/components/FlashMessage'
 import FlashMessageMixin from '@/Adaptcms/Base/ui/mixins/FlashMessageMixin'
 
@@ -132,7 +131,8 @@ export default {
   ],
 
   components: {
-    FlashMessage
+    FlashMessage,
+    Link
   },
 
   watch: {
